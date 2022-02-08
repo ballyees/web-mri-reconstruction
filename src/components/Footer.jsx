@@ -24,7 +24,7 @@ import {
           align={{ base: 'center', md: 'center' }}>
           <Text></Text>
           <Stack direction={'row'} spacing={6}>
-            <Link href='https://chakra-ui.com' isExternal>
+            <Link href='https://github.com/ballyees/web-mri-reconstruction' isExternal>
                 <Tooltip label="Github WEB">
                     <IconButton aria-label='github-web' icon={<Icon as={FaGithub}></Icon>} />
                 </Tooltip>
