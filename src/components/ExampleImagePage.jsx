@@ -8,25 +8,28 @@ import { Stack, Flex,
   Slider,
   SliderTrack,
   SliderFilledTrack,
-  SliderThumb, } from '@chakra-ui/react'
+  SliderThumb,
+  Tooltip, } from '@chakra-ui/react'
 import ImageExampleData from "./ImageExampleData";
 
 export default function ExampleImagePage(props) {
   let speed = props.speedup
   const base_path = process.env.PUBLIC_URL + `/example_data_api/${speed}/`
   const [value, setValue] = useState(1)
+  // const [selectIndex, setSelectIndex] = useState(0)
   const handleChange = (value) => setValue(parseInt(value))
   
   return (
     <Stack>
+      <Tooltip label="Show image in page">
       <Flex>
-        <NumberInput maxW='100px' mr='2rem' value={value} onChange={handleChange} max={12} min={1} >
-          <NumberInputField />
-          <NumberInputStepper>
-            <NumberIncrementStepper/>
-            <NumberDecrementStepper/>
-          </NumberInputStepper>
-        </NumberInput>
+          <NumberInput maxW='100px' mr='2rem' value={value} onChange={handleChange} max={12} min={1} >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper/>
+              <NumberDecrementStepper/>
+            </NumberInputStepper>
+          </NumberInput>
         <Slider
           flex='1'
           focusThumbOnChange={false}
@@ -41,6 +44,7 @@ export default function ExampleImagePage(props) {
           <SliderThumb fontSize='sm' boxSize='32px' children={value} />
         </Slider>
       </Flex>
+      </Tooltip>
       {
         [...Array(value).keys()].map(
           index => {

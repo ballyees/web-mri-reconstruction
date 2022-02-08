@@ -1,4 +1,3 @@
-import React from "react";
 import { Image, Grid, GridItem, Tooltip, Box } from '@chakra-ui/react'
 
 export default function ImageExampleData(props) {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Select, Grid, GridItem, Image, Tooltip, VStack, StackDivider, useBoolean, Box, Button, Skeleton } from '@chakra-ui/react'
 import Config from "../config";
+import ParametersTable from "./ParametersTable";
 
 const regx = new RegExp(/.*base64,/);
 const base64_format = 'data:image/png;base64,';
@@ -82,7 +83,7 @@ export default function UploadFile() {
         </Grid>
         <Box borderRadius='md' color='black.700' p={4} >
         {(imageSourceBase64==='')?
-          <></>
+          <ParametersTable />
           :
           <Grid templateColumns='repeat(2, 1fr)' gap={1} justifyItems="center">
             <GridItem>
