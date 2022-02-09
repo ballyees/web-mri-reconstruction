@@ -10,7 +10,7 @@ export default function App() {
     <Container color='gray.500' pt={10} maxW='container.xl'>
       <Tabs variant='soft-rounded' isFitted >
         <TabList>
-          <Tab>Story</Tab>
+          {/* <Tab>Story</Tab> */}
           <Tab>Example on 3x</Tab>
           <Tab>Example on 5x</Tab>
           <Tab>Example on 8x</Tab>
@@ -18,7 +18,7 @@ export default function App() {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <Story />
+            {/* <Story /> */}
           </TabPanel>
           <TabPanel>
             <ExampleImagePage speedup="3x"/>
