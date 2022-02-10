@@ -17,9 +17,9 @@ export default function App() {
           <Tab>Test on example</Tab>
         </TabList>
         <TabPanels>
-          <TabPanel>
-            {/* <Story /> */}
-          </TabPanel>
+          {/* <TabPanel>
+            <Story />
+          </TabPanel> */}
           <TabPanel>
             <ExampleImagePage speedup="3x"/>
           </TabPanel>
