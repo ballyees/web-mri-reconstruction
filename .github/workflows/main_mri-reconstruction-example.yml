@@ -21,11 +21,10 @@ jobs:
         with:
           node-version: '14.x'
 
-      - name: npm install, build, and test
+      - name: npm install, build
         run: |
           npm install
-          npm run build --if-present
-          npm run test --if-present
+          npm run build
 
       - name: zip file
         run: tar -zcf /tmp/app.tar.gz .
@@ -52,7 +51,7 @@ jobs:
 
       - name: extract files
         run: tar -zxf /tmp/app.tar.gz
-        
+
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
