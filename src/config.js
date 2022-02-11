@@ -4,7 +4,7 @@ const config = {
         "baseURL": process.env.URL_DEV || "http://localhost:8000"
     },
     "production": {
-        "baseURL": process.env.URL_PROD || "http://localhost:8000"
+        "baseURL": process.env.URL_PROD || "https://kittinan_prompao-sv4w625437l2eekv.socketxp.com"
     }
 };
 
