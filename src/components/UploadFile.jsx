@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Select, Grid, GridItem, Image, Tooltip, VStack, StackDivider, useBoolean, Box, Button, Skeleton } from '@chakra-ui/react'
+import { Select, Grid, GridItem, Image, Tooltip, VStack, StackDivider, useBoolean, Box, Button, Skeleton, useToast } from '@chakra-ui/react'
 import Config from "../config";
 import ParametersTable from "./ParametersTable";
 
@@ -7,7 +7,7 @@ const regx = new RegExp(/.*base64,/);
 const base64_format = 'data:image/png;base64,';
 const config = Config()
 
-const load_example_base64 = (path, params, setLoadingData, setLoadingResponse, setData, setResponse) => {
+const load_example_base64 = (path, params, setLoadingData, setLoadingResponse, setData, setResponse, toast) => {
   let url = `${config.baseURL}/v1/${params.method}/${params.speed}`
   const reader = new FileReader();
   reader.onload = (e) => {
@@ -20,10 +20,31 @@ const load_example_base64 = (path, params, setLoadingData, setLoadingResponse, s
       body: JSON.stringify({
         file: data
       })
-    }).then(response => response.json()).then(data=>{
+    }).then(response => {
+      if (response.ok){ return response.json()}
+      else{ throw new Error("can't connect to api server") }
+    }).then(data=>{
+      toast({
+        title: 'Prediction successful.',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
       setResponse(data['response'])
       setLoadingResponse.off();
+      
     })
+    .catch((error) => {
+      toast({
+        title: 'Prediction fail.',
+        description: "can't connect to api server",
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      })
+      // setLoadingResponse.off();
+    });
+    
   };
   // load example image
   fetch(path)
@@ -39,6 +60,7 @@ export default function UploadFile() {
   const [imageID, SetImageID] = useState('0_compress.png');
   const [loadingSource, setLoadingSource] = useBoolean()
   const [loadingResponse, setLoadingResponse] = useBoolean()
+  const toast = useToast()
   let params = {method: method, speed: speed}
   // console.log(process.env.NODE_ENV)
   return (
@@ -74,7 +96,7 @@ export default function UploadFile() {
                 setLoadingSource.on();
                 setLoadingResponse.on();
                 e.preventDefault();
-                load_example_base64(process.env.PUBLIC_URL + `/example_data_api/${speed}/${imageID}`, params, setLoadingSource, setLoadingResponse, setImageSourceBase64, setImageResponseBase64)
+                load_example_base64(process.env.PUBLIC_URL + `/example_data_api/${speed}/${imageID}`, params, setLoadingSource, setLoadingResponse, setImageSourceBase64, setImageResponseBase64, toast)
               }
             }>
               Submit
