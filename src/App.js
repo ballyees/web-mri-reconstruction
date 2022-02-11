@@ -3,7 +3,7 @@ import { Container, Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/r
 import UploadFile from "./components/UploadFile";
 import ExampleImagePage from "./components/ExampleImagePage";
 import Footer from "./components/Footer";
-import Story from "./components/Story";
+// import Story from "./components/Story";
 
 export default function App() {
   return (
