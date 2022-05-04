@@ -22,7 +22,7 @@ const load_example_base64 = (path, params, setLoadingData, setLoadingResponse, s
       })
     }).then(response => {
       if (response.ok){ return response.json()}
-      else{ throw new Error("can't connect to api server") }
+      else{ throw new Error("server not support this method") }
     }).then(data=>{
       toast({
         title: 'Prediction successful.',
@@ -35,9 +35,10 @@ const load_example_base64 = (path, params, setLoadingData, setLoadingResponse, s
       
     })
     .catch((error) => {
+      console.log(error.message)
       toast({
         title: 'Prediction fail.',
-        description: "can't connect to api server",
+        description: error.message,
         status: 'error',
         duration: 3000,
         isClosable: true,
